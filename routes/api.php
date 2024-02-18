@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\DispositivoController;
 use App\Http\Controllers\Api\ModeloController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,4 +28,9 @@ Route::prefix('marcas')->controller(MarcaController::class)->group(function () {
 
 Route::prefix('modelos')->controller(ModeloController::class)->group(function () {
     Route::get('/byMarca', 'index');
+});
+
+Route::prefix('dispositivos')->controller(DispositivoController::class)->group(function () {
+    Route::get('/byModeloOrMarca', 'indexByModeloOrMarca');
+    Route::get('/byBodega', 'indexByBodega');
 });
