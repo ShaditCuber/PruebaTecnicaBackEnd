@@ -10,7 +10,13 @@ use Illuminate\Http\Request;
 class ModeloController extends Controller
 {
 
-    public function index(ModeloRequests $request)
+    public function index(Request $request)
+    {
+        $modelos = Modelo::all(['modelo_id', 'nombre']);
+        return $modelos;
+    }
+
+    public function indexByMarca(ModeloRequests $request)
     {
         $modelos = Modelo::join('marcas', 'modelos.marca_id', '=', 'marcas.marca_id')
             ->where('modelos.marca_id', $request->marca_id)
